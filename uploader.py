@@ -62,7 +62,11 @@ init(autoreset=True)
 # --- Input / Output Settings ---
 # Set to 'set_file_path' to force interactive user prompt, or provide a raw string path.
 IMAGE_DIRECTORY = 'set_file_path'
-CSV_OUTPUT_FILE = 'uploaded_images.csv'
+
+# Dynamic CSV Filename: batch_yyyy_mm_dd_hhmmss.csv
+timestamp_str = datetime.now().strftime("%Y_%m_%d_%H%M%S")
+CSV_OUTPUT_FILE = f"batch_{timestamp_str}.csv"
+
 STATE_FILE = 'upload_state.json'  # Used for tracking progress to enable resume functionality
 
 # --- Execution Logic Settings ---
@@ -605,9 +609,7 @@ def process_file_robustly(uploader: ImgboxUploader, file_path: str, index: int, 
 def get_user_input_path() -> Optional[str]:
     """Prompts the user interactively if no path is configured."""
     Console.header("FILE PATH INPUT")
-    print(f"{Fore.CYAN}Please provide the path to your images press 'Enter' to continue")
-    print("\n")
-    print("Options:")
+    print(f"{Fore.CYAN}Please provide the path to your images with following options and press 'Enter' to continue:")
     print(f"{Fore.YELLOW}• Enter a folder path containing images")
     print(f"{Fore.YELLOW}• Enter a single image file path")
     print(f"{Fore.YELLOW}• Drag and drop a folder or file into this window\n")
