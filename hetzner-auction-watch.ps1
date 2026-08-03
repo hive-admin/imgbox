@@ -1,6 +1,5 @@
 <#
-Polls the Hetzner Server Auction feed and sends a Telegram message when a
-server whose CPU matches $CpuFilter shows up. Runs until Ctrl+C.
+Hetzner Polling and Notifying Bot
 #>
 
 $BotToken = "8960967933:AAEvh4CCjfEaf8_1EgdnNoN9RIjj1pT-j3U"
